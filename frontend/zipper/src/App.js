@@ -8,10 +8,9 @@ import Login from './components/Login'
 import Dashboard from './components/Dashboard'
 // import NavbarComp from './components/NavbarComp'
 
-function Dash(){
-    return <Dashboard/>
-}
 export default function App(){
+    const [username, setUsername] = React.useState("John Doe");
+    // const []
     return(
         <BrowserRouter>
             <NavbarComp/>
@@ -19,9 +18,7 @@ export default function App(){
                     <Route path="/" exact component={Homepage} />
                     <Route path="/signup" exact component={Signup}/>
                     <Route path="/login" exact component={Login}/>
-                    <Route path='/dashboard' exact>
-                        <Dash/>
-                    </Route>
+                    <Route path='/dashboard' exact component={() => <Dashboard name={username}/>}/>
                 </Switch>
             <Footer/>
         </BrowserRouter>
