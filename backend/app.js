@@ -24,11 +24,12 @@ mongoose.connect(dbUrl)
 
 const app = express();
 
-app.use(bodyparser.json())
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.use(
     cors({
-      origin: ["*"],
+      origin: ["http://localhost:3000"],
       credentials: true,
       methods: ["GET", "POST"],
     })
@@ -37,7 +38,7 @@ app.use(
 const secret = process.env.SECRET;
 
 app.use(cookieParser(secret));
-app.set("trust proxy", 1);
+// app.set("trust proxy", 1);
 app.use(
   session({
     name: "Session1.0",
@@ -52,9 +53,9 @@ app.use(
     cookie: {
       expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
       maxAge: 100 * 60 * 60 * 24 * 7,
-      domain: "/",
-      sameSite: "none",
-      secure: true,
+      // domain: "/",
+      // sameSite: "none",
+      // secure: true,
     },
   })
 );
