@@ -6,7 +6,7 @@ export default function Homepage(){
     return(
         <div>
             <section>
-                <Row className='landing-section'>
+                <Row className='landing-section mx-0'>
                     <Col className='landing-brand-name'>
                         <h1>Zipper</h1>
                     </Col>

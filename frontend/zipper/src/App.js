@@ -2,40 +2,25 @@ import React from 'react'
 import NavbarComp from './components/NavbarComp'
 import Footer from './components/Footer'
 import Homepage from './components/Homepage'
-import { BrowserRouter, Routes, Switch, Route, Link} from 'react-router-dom'
+import { BrowserRouter, Route, Link, Routes, Switch } from 'react-router-dom'
+import Signup from './components/Signup'
+import Login from './components/Login'
+import Dashboard from './components/Dashboard'
 // import NavbarComp from './components/NavbarComp'
 
 export default function App(){
+    const [username, setUsername] = React.useState("John Doe");
+    // const []
     return(
         <BrowserRouter>
             <NavbarComp/>
-            <Routes>
-                <Route path="/" element={<Homepage />}>
-                <Route index element={<Homepage />} />
-                <Route path="blogs" element={<Homepage />} />
-                <Route path="contact" element={<Homepage />} />
-                <Route path="*" element={<Homepage />} />
-                </Route>
-            </Routes>
+                <Switch>
+                    <Route path="/" exact component={Homepage} />
+                    <Route path="/signup" exact component={Signup}/>
+                    <Route path="/login" exact component={Login}/>
+                    <Route path='/dashboard' exact component={() => <Dashboard name={username}/>}/>
+                </Switch>
             <Footer/>
         </BrowserRouter>
-
-        // <div>
-        //     <NavbarComp/>
-        //     <Homepage/>
-        //     <Footer/>
-        // </div>
     )
-}
-
-function Home() {
-    return <Homepage/>;
-}
-
-function About() {
-    return <h2>About</h2>;
-}
-
-function Users() {
-    return <h2>Users</h2>;
 }
