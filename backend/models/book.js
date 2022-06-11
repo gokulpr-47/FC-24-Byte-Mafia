@@ -21,9 +21,15 @@ const bookSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId, 
         ref: "user"
     },
+    city: String,
     borrowed: {
         type: Boolean,
         default: false
+    },
+    lendingLocation: {
+        longitude: String,
+        latitude: String,
+        required: true
     },
     numberOfTimesBorrowed: {
         type: Number

@@ -29,7 +29,7 @@ app.use(express.json());
 
 app.use(
     cors({
-      origin: ["http://localhost:3000"],
+      origin: "https://62a3b7f860f8711bc200727d--zesty-axolotl-e7aeb7.netlify.app",
       credentials: true,
       methods: ["GET", "POST"],
     })
@@ -53,9 +53,9 @@ app.use(
     cookie: {
       expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
       maxAge: 100 * 60 * 60 * 24 * 7,
-      // domain: "/",
-      // sameSite: "none",
-      // secure: true,
+      domain: "fc-24.herokuapp.com",
+      sameSite: "none",
+      secure: true,
     },
   })
 );

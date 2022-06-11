@@ -10,7 +10,7 @@ router.post("/addbook", async(req, res)=>{
     const user = new user.findOne(req.user.username);
     user.lendingbooklist.push(book);
     await user.save();
-    console.log("lalala", user)
+    console.log("user", user)
 });
 
 module.exports = router;
