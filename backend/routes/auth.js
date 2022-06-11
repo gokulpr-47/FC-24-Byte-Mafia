@@ -4,11 +4,6 @@ const passport = require("passport");
 const bcrypt = require("bcrypt");
 const User = require("../models/user")
 
-router.get("/get", (req, res)=> {
-  console.log("LLLLL")
-  res.send("sup nigga")
-})
-
 router.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
     if (err) throw err;
@@ -43,7 +38,6 @@ router.get("/logout", (req, res) => {
 });
 
 router.post("/register",async (req, res) => {
-  console.log("LLLLLLLLLL");
   console.log("req.body", req.body);
 
   const users = await User.find({});
@@ -51,7 +45,6 @@ router.post("/register",async (req, res) => {
   // res.send(req.body);
   User.findOne({ username: req.body.username }, async (err, doc) => {
     if(err){
-      console.log("$$$$$$$$$$$$$$");
       console.log(err)
     }
     if (doc) res.send("User Already Exists");

@@ -29,7 +29,7 @@ app.use(express.json());
 
 app.use(
     cors({
-      origin: "https://62a3b7f860f8711bc200727d--zesty-axolotl-e7aeb7.netlify.app",
+      origin: "https://62a41549a32b4d5375b0dfd2--zesty-axolotl-e7aeb7.netlify.app",
       credentials: true,
       methods: ["GET", "POST"],
     })
@@ -38,7 +38,7 @@ app.use(
 const secret = process.env.SECRET;
 
 app.use(cookieParser(secret));
-// app.set("trust proxy", 1);
+app.set("trust proxy", 1);
 app.use(
   session({
     name: "Session1.0",

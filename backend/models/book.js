@@ -10,6 +10,7 @@ const bookSchema = new Schema({
         type: String,
         Required: true
     },
+    mrp: String,
     about: {
         type: String,
     },
@@ -18,18 +19,14 @@ const bookSchema = new Schema({
         type: [String]
     },
     owner: {
-        type: mongoose.Schema.Types.ObjectId, 
+        type: mongoose.Schema.Types.ObjectId,
         ref: "user"
     },
-    city: String,
+    lattitude: String,
+    longitude: String,
     borrowed: {
         type: Boolean,
         default: false
-    },
-    lendingLocation: {
-        longitude: String,
-        latitude: String,
-        required: true
     },
     numberOfTimesBorrowed: {
         type: Number

@@ -7,15 +7,22 @@ const userSchema = new Schema({
         type: String,
         unique: true
     },
+    phoneNo: Number,
     password: {
         type: String
     },
     numberofBorrowedBooks: Number,
     borrowedList:{
-        type: [{Type: Schema.Types.ObjectId, ref: "book"}]
+        type: [{
+            type: Schema.Types.ObjectId,
+            ref: "book"
+        }]
     },
     lendingbooklist: {
-        type: [{type: mongoose.Schema.Types.ObjectId, ref: "book"}]
+        type: [{
+          type: mongoose.Schema.Types.ObjectId,
+           ref: "book"
+         }]
     },
     lendingHistory: [{
         type: Schema.Types.ObjectId,
