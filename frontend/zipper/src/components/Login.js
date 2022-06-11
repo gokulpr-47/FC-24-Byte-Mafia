@@ -1,21 +1,22 @@
 import { useState, useContext } from "react";
 // import "./signin.css";
 import { Button, Container } from "react-bootstrap";
-// import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
-// import { LoginContext } from "../../contexts/LoginContext";
+import {Link} from 'react-router-dom'
+import { LoginContext } from "../contexts/LoginContext";
 
 export default function Login(props) {
-//   const history = useHistory();
-//   const { setIsLoggedIn } = useContext(LoginContext);
+  const history = useHistory();
+  const { setIsLoggedIn } = useContext(LoginContext);
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
-//   const [redirectPath, setRedirectPath] = useState(
-//     props.location.state ? props.location.state.next : false
-//   );
-//   const [redirectText, setRedirectText] = useState(
-//     props.location.state ? props.location.state.message : false
-//   );
+  const [redirectPath, setRedirectPath] = useState(
+    props.location.state ? props.location.state.next : false
+  );
+  const [redirectText, setRedirectText] = useState(
+    props.location.state ? props.location.state.message : false
+  );
 
   const sendData = () => {
     axios({
@@ -28,14 +29,14 @@ export default function Login(props) {
       url: "https://fc-24.herokuapp.com/login",
     }).then((res) => {
       if (res.data.loggedIn) {
-        // setIsLoggedIn(true);
+        setIsLoggedIn(true);
         console.log("user Connected");
-        // setRedirectText(false);
-        // history.push(redirectPath ? redirectPath : "/");
+        setRedirectText(false);
+        history.push(redirectPath ? redirectPath : "/dashboard");
       } 
-    //   else {
-    //     setRedirectText(res.data.message);
-    //   }
+      else {
+        setRedirectText(res.data.message);
+      }
     });
   };
 
@@ -44,7 +45,7 @@ export default function Login(props) {
         <div className='signup-box'>
             <Container>
                 <div className="signIn_page">
-                    <h3>Sign In</h3>
+                    <h3>Log In</h3>
                     {/* {redirectText ? (
                     <p style={{ marginBottom: "0px", fontWeight: "500" }}>
                         {redirectText}
@@ -69,10 +70,11 @@ export default function Login(props) {
                     />  
                     </div>
                     <Button variant="outline-success" onClick={sendData}>
-                    Sign In
+                    Log In
                     </Button>
                 </div>
             </Container>
+            <p className="signup-direct my-3">Don't have an account <Link to={`/Signup`}>Sign Up</Link></p>
         </div>
     </div>
   );

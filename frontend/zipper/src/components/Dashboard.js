@@ -1,11 +1,26 @@
-import React from 'react'
+import {useEffect, useState} from 'react'
 import { Row, Col, Button, Tab, Tabs } from 'react-bootstrap'
 import CardComponent from './CardComponent'
 import CardDash from './CardDash'
+import { Link } from 'react-router-dom'
+import axios from 'axios';
 
 export default function Dashboard(props){
+    let [user, setUser] = useState();
+    useEffect(()=>{
+        axios({
+            method: "GET",
+            withCredentials: true,
+            url:"https://fc-24.herokuapp.com/dashboard"
+        }).then((res)=>{
+            setUser(res.data.user);
+        })
+    }, [])
+
     console.log(props)
     return(
+        <div>
+        {user ? (
         <div>
             <section className="user-display">
                 <Row className='w-100 mx-0 my-4'>
@@ -13,7 +28,7 @@ export default function Dashboard(props){
                         <h3>Hello {props.name}!!</h3>
                     </Col>
                     <Col className='d-flex justify-content-end lend-button'>
-                        <Button>lend new +</Button>
+                        <Link to="/Lendout"><Button>lend new +</Button></Link>
                     </Col>
                 </Row>
             </section>
@@ -22,10 +37,10 @@ export default function Dashboard(props){
                     <div className='counts-column'>
                         <Row>
                             <Col className='borrowed-count my-2'>
-                                <p>No. of borrowed count: <br /> 5</p>
+                                <p>No. of borrowed count: <br /> user.borrowedList.length</p>
                             </Col>
                             <Col className='lended-count my-2'>
-                                <p>No. of lended count: <br/> 5</p>
+                                <p>No. of lended count: <br/> user.lendingbooklist.length</p>
                             </Col>
                         </Row>
                     </div>
@@ -41,6 +56,12 @@ export default function Dashboard(props){
                     </Tab>
                 </Tabs>
             </section>  
+        </div>
+        ):(
+            <div className="notlogged">
+                <h1>you need to be logged in</h1>
+            </div>
+        )}
         </div>
     )
 }
